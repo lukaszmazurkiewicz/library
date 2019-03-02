@@ -10,27 +10,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "READERS")
-public class Reader {
+@Entity(name = "PIECES")
+public class Piece {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "FIRSTNAME")
+    @Column(name = "BOOK_ID")
     @NotNull
-    private String firstName;
+    private long bookId;
 
-    @Column(name = "LASTNAME")
+    @Column(name = "STATUS")
     @NotNull
-    private String lastName;
-
-    @Column(name = "CREATEACCOUNTDATE")
-    @NotNull
-    private LocalDate createAccountDate;
+    private String status;
 }

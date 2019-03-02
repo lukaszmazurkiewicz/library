@@ -15,22 +15,21 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "READERS")
-public class Reader {
+@Entity(name = "BOOKS")
+public class Book {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "FIRSTNAME")
+    @Column(name = "TITLE")
     @NotNull
-    private String firstName;
+    private String title;
 
-    @Column(name = "LASTNAME")
+    @Column(name = "AUTHOR")
     @NotNull
-    private String lastName;
+    private String author;
 
-    @Column(name = "CREATEACCOUNTDATE")
-    @NotNull
-    private LocalDate createAccountDate;
+    @Column(name = "PUBLISHDATE")
+    private LocalDate publishDate;
 }
