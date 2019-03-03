@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RentDto {
+    private long id;
     private long readerId;
     private long pieceId;
     private LocalDate rentDate;

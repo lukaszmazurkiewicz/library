@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Getter
@@ -21,11 +23,16 @@ public class Piece {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "BOOK_ID")
+    @Column(name = "BOOKID")
     @NotNull
     private long bookId;
 
     @Column(name = "STATUS")
     @NotNull
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "BOOK_ID")
+    private Book book;
+
 }
