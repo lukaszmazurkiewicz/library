@@ -27,12 +27,10 @@ public class Rent {
     @NotNull
     private long id;
 
-    @Column(name = "READERID")
+    @Column(name = "READER_ID")
     @NotNull
     private long readerId;
 
-    /*@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "PIECES_ID")*/
     @Column(name = "PIECE_ID")
     @NotNull
     private long pieceId;
@@ -45,6 +43,10 @@ public class Rent {
     private LocalDate returnDate;
 
     @ManyToOne
-    @JoinColumn(name = "READER_ID")
+    @JoinColumn(name = "READER")
     private Reader reader;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "PIECES_ID")
+    private Piece piece;
 }

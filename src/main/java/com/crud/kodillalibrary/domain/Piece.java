@@ -23,7 +23,7 @@ public class Piece {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "BOOKID")
+    @Column(name = "BOOK_ID")
     @NotNull
     private long bookId;
 
@@ -32,7 +32,7 @@ public class Piece {
     private String status;
 
     @ManyToOne
-    @JoinColumn(name = "BOOK_ID")
+    @JoinColumn(name = "BOOK")
     private Book book;
 
 }

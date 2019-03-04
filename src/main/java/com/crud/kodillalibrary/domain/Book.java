@@ -34,12 +34,12 @@ public class Book {
     @NotNull
     private String author;
 
-    @Column(name = "PUBLISHDATE")
+    @Column(name = "PUBLISH_DATE")
     private LocalDate publishDate;
 
     @OneToMany(
             targetEntity = Piece.class,
-            mappedBy = "bookId",
+            mappedBy = "book",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )

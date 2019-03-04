@@ -26,21 +26,21 @@ public class Reader {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "FIRSTNAME")
+    @Column(name = "FIRST_NAME")
     @NotNull
     private String firstName;
 
-    @Column(name = "LASTNAME")
+    @Column(name = "LAST_NAME")
     @NotNull
     private String lastName;
 
-    @Column(name = "CREATEACCOUNTDATE")
+    @Column(name = "CREATE_ACCOUNT_DATE")
     @NotNull
     private LocalDate createAccountDate;
 
     @OneToMany(
             targetEntity = Rent.class,
-            mappedBy = "readerId",
+            mappedBy = "reader",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
