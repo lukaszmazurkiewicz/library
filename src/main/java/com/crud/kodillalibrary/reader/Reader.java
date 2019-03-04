@@ -1,5 +1,6 @@
-package com.crud.kodillalibrary.domain;
+package com.crud.kodillalibrary.reader;
 
+import com.crud.kodillalibrary.rent.Rent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

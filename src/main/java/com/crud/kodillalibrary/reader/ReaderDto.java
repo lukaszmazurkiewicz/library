@@ -1,4 +1,4 @@
-package com.crud.kodillalibrary.domain.dto;
+package com.crud.kodillalibrary.reader;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,10 +9,9 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RentDto {
+class ReaderDto {
     private long id;
-    private long readerId;
-    private long pieceId;
-    private LocalDate rentDate;
-    private LocalDate returnDate;
+    private String firstName;
+    private String lastName;
+    private LocalDate createAccountDate;
 }

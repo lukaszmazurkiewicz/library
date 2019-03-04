@@ -1,5 +1,6 @@
-package com.crud.kodillalibrary.domain;
+package com.crud.kodillalibrary.book;
 
+import com.crud.kodillalibrary.copy.Copy;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +23,6 @@ import java.util.List;
 @Entity(name = "BOOKS")
 public class Book {
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
@@ -38,10 +38,10 @@ public class Book {
     private LocalDate publishDate;
 
     @OneToMany(
-            targetEntity = Piece.class,
+            targetEntity = Copy.class,
             mappedBy = "book",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<Piece> piecesList;
+    private List<Copy> copies;
 }
