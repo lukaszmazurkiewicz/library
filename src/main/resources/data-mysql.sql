@@ -1,0 +1,1 @@
+INSERT into books (id, author, publish_date, title) values (1,'ffff','2018-12-12','sss');
