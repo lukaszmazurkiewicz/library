@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("library/books")
+@RequestMapping("/library/books")
 class BookController {
-    private final BookService bookService;
     private final BookMapper bookMapper;
+    private final BookService bookService;
 
     @Autowired
-    BookController(BookService bookService, BookMapper bookMapper) {
-        this.bookService = bookService;
+    public BookController(BookMapper bookMapper, BookService bookService) {
         this.bookMapper = bookMapper;
+        this.bookService = bookService;
     }
 
     @PostMapping

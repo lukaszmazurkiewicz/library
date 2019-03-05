@@ -1,4 +1,4 @@
-package com.crud.kodillalibrary.book;
+package com.crud.kodillalibrary.reader;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface BookRepository extends CrudRepository<Book, Long> {
+public interface ReaderRepository extends CrudRepository<Reader, Long> {
     @Override
-    List<Book> findAll();
+    List<Reader> findAll();
 
     @Override
-    Optional<Book> findById(Long id);
+    Optional<Reader> findById(Long id);
 
     @Override
-    Book save(Book book);
+    Reader save(Reader reader);
 }

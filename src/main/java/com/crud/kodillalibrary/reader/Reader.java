@@ -46,4 +46,11 @@ public class Reader {
             fetch = FetchType.LAZY
     )
     private List<Rent> rentsList;
+
+    public Reader(long id, String firstName, String lastName, LocalDate createAccountDate) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.createAccountDate = createAccountDate;
+    }
 }

@@ -14,12 +14,12 @@ class BookService {
         this.bookRepository = bookRepository;
     }
 
-    Book getBookById(long id) {
-        return bookRepository.findById(id).orElseThrow(BookNotFoundException::new);
-    }
-
     List<Book> getBooks() {
         return bookRepository.findAll();
+    }
+
+    Book getBookById(long id) {
+        return bookRepository.findById(id).orElseThrow(BookNotFoundException::new);
     }
 
     Book addBook(final Book book) {
