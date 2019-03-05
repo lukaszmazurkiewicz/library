@@ -29,7 +29,6 @@ public class Copy {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToOne()
     @Column(name = "STATUS")
     @NotNull
     private String status;

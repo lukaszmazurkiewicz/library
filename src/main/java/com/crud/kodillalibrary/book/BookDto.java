@@ -14,4 +14,10 @@ class BookDto {
     private String title;
     private String author;
     private LocalDate publishDate;
+
+    public BookDto(String title, String author, LocalDate publishDate) {
+        this.title = title;
+        this.author = author;
+        this.publishDate = publishDate;
+    }
 }

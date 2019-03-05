@@ -2,6 +2,7 @@ package com.crud.kodillalibrary.book;
 
 import com.crud.kodillalibrary.copy.Copy;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,6 +21,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 @Entity(name = "BOOKS")
 public class Book {
     @Id
@@ -44,4 +46,11 @@ public class Book {
             fetch = FetchType.LAZY
     )
     private List<Copy> copies;
+
+    public Book(long id, String title, String author, LocalDate publishDate) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.publishDate = publishDate;
+    }
 }
