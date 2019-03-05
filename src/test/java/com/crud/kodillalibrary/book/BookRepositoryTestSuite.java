@@ -44,8 +44,8 @@ public class BookRepositoryTestSuite {
     @Test
     public void testFindById() {
         //Given
-        Book book = new Book(1L, "abc", "def", LocalDate.of(1992,12,2));
-        Book book2 = new Book(2L, "ghi", "jkl", LocalDate.of(2000, 2, 1));
+        Book book = new Book(3L, "abc", "def", LocalDate.of(1992,12,2));
+        Book book2 = new Book(4L, "ghi", "jkl", LocalDate.of(2000, 2, 1));
 
         bookRepository.save(book);
         bookRepository.save(book2);

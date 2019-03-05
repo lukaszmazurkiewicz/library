@@ -2,6 +2,7 @@ package com.crud.kodillalibrary.reader;
 
 import com.crud.kodillalibrary.rent.Rent;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,6 +21,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 @Entity(name = "READERS")
 public class Reader {
     @Id
