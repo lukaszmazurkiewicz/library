@@ -3,8 +3,10 @@ package com.crud.kodillalibrary.copy;
 import com.crud.kodillalibrary.book.Book;
 import com.crud.kodillalibrary.rent.Rent;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,12 +25,14 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 @Entity(name = "COPIES")
 public class Copy {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Setter
     @Column(name = "STATUS")
     @NotNull
     private String status;
@@ -45,4 +49,9 @@ public class Copy {
     )
     private List<Rent> rents;
 
+    public Copy(long id, Book book, String status) {
+        this.id = id;
+        this.book = book;
+        this.status = status;
+    }
 }
