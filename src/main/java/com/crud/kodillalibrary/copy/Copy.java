@@ -35,7 +35,7 @@ public class Copy {
     @Setter
     @Column(name = "STATUS")
     @NotNull
-    private String status;
+    private Status status;
 
     @ManyToOne
     @JoinColumn(name = "BOOK_ID")
@@ -49,7 +49,7 @@ public class Copy {
     )
     private List<Rent> rents;
 
-    public Copy(long id, Book book, String status) {
+    public Copy(long id, Book book, Status status) {
         this.id = id;
         this.book = book;
         this.status = status;

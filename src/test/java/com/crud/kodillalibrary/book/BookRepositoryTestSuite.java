@@ -76,11 +76,6 @@ public class BookRepositoryTestSuite {
 
         //Then
         assertEquals(2L, bookRepository.count() - sizeOfDatabaseBeforeTest);
-
-
-
-
-
     }
 
 }

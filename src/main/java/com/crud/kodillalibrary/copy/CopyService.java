@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class CopyService {
@@ -33,10 +32,9 @@ public class CopyService {
         return copyRepository.save(copy);
     }
 
-    List<Copy> copiesAvailableToRent() {
-        List<Copy> copies = copyRepository.findAll();
-        return copies.stream()
-                .filter(c -> c.getStatus().equals("ok"))
-                .collect(Collectors.toList());
+    Long copiesAvailableToRent(long bookId) {
+        long howManyCopies = copyRepository.countByBook_IdAndAndStatus(bookId, Status.AVAILABLE);
+
+        return howManyCopies;
     }
 }

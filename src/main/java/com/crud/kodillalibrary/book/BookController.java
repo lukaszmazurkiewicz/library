@@ -19,7 +19,9 @@ class BookController {
     }
 
     @PostMapping
-    void addBook(@RequestBody BookDto bookDto) {
-        bookService.addBook(bookMapper.mapToBook(bookDto));
+    Long addBook(@RequestBody BookDto bookDto) {
+        Book book = bookService.addBook(bookMapper.mapToBook(bookDto));
+        return book.getId();
+
     }
 }

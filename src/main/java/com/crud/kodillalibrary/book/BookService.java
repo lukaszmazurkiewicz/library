@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-class BookService {
+public class BookService {
     private final BookRepository bookRepository;
 
     @Autowired
@@ -18,7 +18,7 @@ class BookService {
         return bookRepository.findAll();
     }
 
-    Book getBookById(long id) {
+    public Book getBookById(long id) {
         return bookRepository.findById(id).orElseThrow(BookNotFoundException::new);
     }
 

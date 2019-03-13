@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/library/copies")
 public class CopyController {
@@ -24,8 +22,9 @@ public class CopyController {
     }
 
     @PostMapping
-    void addCopy(@RequestBody CopyDto copyDto) {
-        copyService.addCopy(copyMapper.mapToCopy(copyDto));
+    Long addCopy(@RequestBody CopyDto copyDto) {
+        Copy copy =copyService.addCopy(copyMapper.mapToCopy(copyDto));
+        return copy.getId();
     }
 
     @PatchMapping("{id}")
@@ -33,8 +32,8 @@ public class CopyController {
         return copyMapper.mapToCopyDto(copyService.changeStatus(copyDto, id));
     }
 
-    @GetMapping
-    public List<CopyDto> howManyBooksAvailable() {
-        return copyMapper.mapToListCopyDto(copyService.copiesAvailableToRent());
+    @GetMapping("/bookId/{bookId}")
+    public Long howManyBooksAvailable(@PathVariable long bookId) {
+        return copyService.copiesAvailableToRent(bookId);
     }
 }
