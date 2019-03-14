@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
 
@@ -29,34 +30,96 @@ public class CopyRepositoryTestSuite {
         //Given
         long sizeOfDatabaseBeforeTest = copyRepository.count();
 
-        System.out.println(sizeOfDatabaseBeforeTest + " 1111111111111111111");
+        Book book = new Book(1, "ja", "ty", LocalDate.of(2010, 12, 12));
 
-        Book book = new Book(1,"ja","ty", LocalDate.of(2010,12,12));
-
-        Book book2 = new Book(2,"ty","ja", LocalDate.now());
         bookRepository.save(book);
-        bookRepository.save(book2);
 
-        System.out.println(bookRepository.count() + "2222222222222222222222");
-
-        Copy copy = new Copy(1,book, Status.AVAILABLE);
-        Copy copy2 = new Copy(2, book2, Status.RENTED);
+        Copy copy = new Copy(book, Status.AVAILABLE);
+        Copy copy2 = new Copy(book, Status.RENTED);
 
         copyRepository.save(copy);
         copyRepository.save(copy2);
 
-        System.out.println(copyRepository.count() + "3333333333333");
-
         //When
         List<Copy> copies = copyRepository.findAll();
 
-        System.out.println(copies.size() + "44444444444");
-
         //Then
         assertEquals(2, copies.size() - sizeOfDatabaseBeforeTest);
-        //assertTrue(copies.contains(copy));
-        //assertTrue(copies.contains(copy2));
+        assertTrue(copies.contains(copy));
+        assertTrue(copies.contains(copy2));
     }
 
+    @Transactional
+    @Test
+    public void testFindById() {
+        //Given
+        Book book = new Book(1, "ja", "ty", LocalDate.of(2010, 12, 12));
+
+        bookRepository.save(book);
+
+        Copy copy = new Copy(book, Status.AVAILABLE);
+        Copy copy2 = new Copy(book, Status.RENTED);
+
+        copyRepository.save(copy);
+        copyRepository.save(copy2);
+
+        //When
+        Optional<Copy> testCopy = copyRepository.findById(copy2.getId());
+
+        //Then
+        assertTrue(testCopy.isPresent());
+        assertEquals(Optional.of(copy2), testCopy);
+        assertEquals(book, testCopy.get().getBook());
+        assertEquals(Status.RENTED, testCopy.get().getStatus());
+    }
+
+    @Transactional
+    @Test
+    public void testSave() {
+        //Given
+        long sizeOfDatabaseBeforeTest = copyRepository.count();
+
+        Book book = new Book(1, "ja", "ty", LocalDate.of(2010, 12, 12));
+
+        bookRepository.save(book);
+
+        Copy copy = new Copy(book, Status.AVAILABLE);
+        Copy copy2 = new Copy(book, Status.RENTED);
+
+        //When
+        copyRepository.save(copy);
+        copyRepository.save(copy2);
+
+        //Then
+        assertEquals(2L, copyRepository.count() - sizeOfDatabaseBeforeTest);
+    }
+
+    @Transactional
+    @Test
+    public void testCountByBook_IdAndAndStatus() {
+        //Given
+        Book book = new Book(1, "ja", "ty", LocalDate.of(2010, 12, 12));
+
+        bookRepository.save(book);
+
+        Copy copy = new Copy(book, Status.AVAILABLE);
+        Copy copy2 = new Copy(book, Status.RENTED);
+        Copy copy3 = new Copy(book, Status.RENTED);
+
+        copyRepository.save(copy);
+        copyRepository.save(copy2);
+        copyRepository.save(copy3);
+
+        //When
+        long howManyAvailable = copyRepository.countByBook_IdAndAndStatus(book.getId(), Status.AVAILABLE);
+        long howManyRented = copyRepository.countByBook_IdAndAndStatus(book.getId(), Status.RENTED);
+        long howManyDestroyed = copyRepository.countByBook_IdAndAndStatus(book.getId(), Status.DESTROYED);
+
+        //Then
+        assertEquals(1L, howManyAvailable);
+        assertEquals(2L, howManyRented);
+        assertEquals(0L, howManyDestroyed);
+
+    }
 
 }

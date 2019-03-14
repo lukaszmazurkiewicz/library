@@ -23,7 +23,7 @@ public class CopyController {
 
     @PostMapping
     Long addCopy(@RequestBody CopyDto copyDto) {
-        Copy copy =copyService.addCopy(copyMapper.mapToCopy(copyDto));
+        Copy copy = copyService.addCopy(copyMapper.mapToCopy(copyDto));
         return copy.getId();
     }
 

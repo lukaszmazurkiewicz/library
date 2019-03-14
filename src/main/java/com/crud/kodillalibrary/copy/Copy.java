@@ -54,4 +54,9 @@ public class Copy {
         this.book = book;
         this.status = status;
     }
+
+    public Copy(Book book, Status status) {
+        this.book = book;
+        this.status = status;
+    }
 }
