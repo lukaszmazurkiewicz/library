@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-class ReaderService {
+public class ReaderService {
     private final ReaderRepository readerRepository;
 
     @Autowired
@@ -18,7 +18,7 @@ class ReaderService {
         return readerRepository.findAll();
     }
 
-    Reader getReaderById(long id) {
+    public Reader getReaderById(long id) {
         return readerRepository.findById(id).orElseThrow(ReaderNotFindException::new);
     }
 

@@ -12,7 +12,7 @@ import java.time.LocalDate;
 class RentDto {
     private long id;
     private long readerId;
-    private long pieceId;
+    private long copyId;
     private LocalDate rentDate;
     private LocalDate returnDate;
 }

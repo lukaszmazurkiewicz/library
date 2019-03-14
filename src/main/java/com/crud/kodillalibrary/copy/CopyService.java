@@ -18,7 +18,7 @@ public class CopyService {
         return copyRepository.findAll();
     }
 
-    Copy getCopyById(long id) {
+    public Copy getCopyById(long id) {
         return copyRepository.findById(id).orElseThrow(CopyNotFoundException::new);
     }
 

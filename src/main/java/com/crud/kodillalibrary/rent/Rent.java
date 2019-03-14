@@ -37,7 +37,7 @@ public class Rent {
     @JoinColumn(name = "READER_ID")
     private Reader reader;
 
-    @ManyToOne(             fetch = FetchType.LAZY)
-    @JoinColumn(name = "PIECE_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "COPY_ID")
     private Copy copy;
 }
