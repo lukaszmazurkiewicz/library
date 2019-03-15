@@ -5,6 +5,7 @@ import com.crud.kodillalibrary.reader.Reader;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,6 +31,7 @@ public class Rent {
     @NotNull
     private LocalDate rentDate;
 
+    @Setter
     @Column(name = "RETURN_DATE")
     private LocalDate returnDate;
 

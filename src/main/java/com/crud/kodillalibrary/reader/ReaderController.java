@@ -19,7 +19,8 @@ class ReaderController {
     }
 
     @PostMapping
-    void addReader(@RequestBody ReaderDto readerDto) {
-        readerService.addReader(readerMapper.mapToReader(readerDto));
+    Long addReader(@RequestBody ReaderDto readerDto) {
+        Reader reader = readerService.addReader(readerMapper.mapToReader(readerDto));
+        return reader.getId();
     }
 }

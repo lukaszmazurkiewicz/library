@@ -16,6 +16,4 @@ public interface RentRepository extends CrudRepository<Rent, Long> {
 
     @Override
     Rent save(Rent rent);
-
-
 }

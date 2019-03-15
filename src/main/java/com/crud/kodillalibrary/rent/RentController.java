@@ -1,6 +1,8 @@
 package com.crud.kodillalibrary.rent;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +21,13 @@ class RentController {
     }
 
     @PostMapping
-    void rentBook(@RequestBody RentDto rentDto) {
-        rentService.addRent(rentMapper.mapToRent(rentDto));
+    Long rentBook(@RequestBody RentDto rentDto) {
+        Rent rent = rentService.addRent(rentMapper.mapToRent(rentDto));
+        return rent.getId();
+    }
+
+    @PatchMapping("{rentId}")
+    RentDto returnBook(@PathVariable long rentId) {
+        return rentMapper.mapToRentDto(rentService.returnBook(rentId));
     }
 }
