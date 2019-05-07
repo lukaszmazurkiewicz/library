@@ -6,6 +6,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum Status {
+
     RENTED("Rented"),
     AVAILABLE("Available"),
     DESTROYED("Destroyed");

@@ -27,9 +27,9 @@ public class CopyController {
         return copy.getId();
     }
 
-    @PatchMapping("{id}")
-    CopyDto changeStatus(@RequestBody CopyDto copyDto, @PathVariable long id) {
-        return copyMapper.mapToCopyDto(copyService.changeStatus(copyDto, id));
+    @PatchMapping("/{status}/{id}")
+    CopyDto changeStatus(@PathVariable Status status, @PathVariable long id) {
+        return copyMapper.mapToCopyDto(copyService.changeStatus(status, id));
     }
 
     @GetMapping("/bookId/{bookId}")

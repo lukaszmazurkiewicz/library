@@ -1,10 +1,7 @@
 package com.crud.kodillalibrary.book;
 
 import com.crud.kodillalibrary.copy.Copy;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Data;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,12 +15,10 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
+@Data
 @Entity(name = "BOOKS")
 public class Book {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
