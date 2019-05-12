@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @AllArgsConstructor
 @Slf4j
-@RequestMapping("/library/rents")
+@RequestMapping("/rents")
 class RentController {
     private final RentMapper rentMapper;
     private final RentService rentService;

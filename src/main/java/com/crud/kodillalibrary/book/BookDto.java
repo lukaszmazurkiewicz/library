@@ -1,14 +1,18 @@
 package com.crud.kodillalibrary.book;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 
 import java.time.LocalDate;
 
-@Value
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 class BookDto {
-    private final long id;
-    private final String title;
-    private final String author;
-    private final LocalDate publishDate;
-
+    private long id;
+    private String title;
+    private String author;
+    private LocalDate publishDate;
 }

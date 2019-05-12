@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @AllArgsConstructor
 @Slf4j
-@RequestMapping("/library/copies")
+@RequestMapping("/copies")
 public class CopyController {
     private final CopyMapper copyMapper;
     private final CopyService copyService;
