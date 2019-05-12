@@ -27,10 +27,4 @@ class CopyMapper {
                 copy.getBook().getId(),
                 copy.getStatus());
     }
-
-    List<CopyDto> mapToListCopyDto(final List<Copy> copies) {
-        return copies.stream()
-                .map(c -> mapToCopyDto(c))
-                .collect(Collectors.toList());
-    }
 }

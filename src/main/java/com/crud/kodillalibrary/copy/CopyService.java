@@ -7,11 +7,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @AllArgsConstructor
 public class CopyService {
-
     private final CopyRepository copyRepository;
 
     public Copy getCopyById(long id) {
-        return copyRepository.findById(id).orElseThrow(CopyNotFoundException::new);
+        return copyRepository.findById(id).orElseThrow(() -> new CopyNotFoundException("Copy with id " + id + " not found."));
     }
 
     Copy addCopy(Copy copy) {

@@ -25,8 +25,8 @@ public class ReaderRepositoryTestSuite {
         //Given
         long sizeOfDatabaseBeforeTest = readerRepository.count();
 
-        Reader reader = new Reader(1L, "jan", "janowy", LocalDate.of(1956, 6, 6));
-        Reader reader2 = new Reader(2L, "tomasz", "tomecki", LocalDate.of(2000, 3, 3));
+        Reader reader = new Reader("jan", "janowy", LocalDate.of(1956, 6, 6));
+        Reader reader2 = new Reader("tomasz", "tomecki", LocalDate.of(2000, 3, 3));
 
         readerRepository.save(reader);
         readerRepository.save(reader2);
@@ -44,8 +44,8 @@ public class ReaderRepositoryTestSuite {
     @Test
     public void testFindById() {
         //Given
-        Reader reader = new Reader(1L, "jan", "janowy", LocalDate.of(1956, 6, 6));
-        Reader reader2 = new Reader(2L, "tomasz", "tomecki", LocalDate.of(2000, 3, 3));
+        Reader reader = new Reader("jan", "janowy", LocalDate.of(1956, 6, 6));
+        Reader reader2 = new Reader("tomasz", "tomecki", LocalDate.of(2000, 3, 3));
 
         readerRepository.save(reader);
         readerRepository.save(reader2);
@@ -67,8 +67,8 @@ public class ReaderRepositoryTestSuite {
         //Given
         long sizeOfDatabaseBeforeTest = readerRepository.count();
 
-        Reader reader = new Reader(5L, "jan", "janowy", LocalDate.of(1956, 6, 6));
-        Reader reader2 = new Reader(6L, "tomasz", "tomecki", LocalDate.of(2000, 3, 3));
+        Reader reader = new Reader("jan", "janowy", LocalDate.of(1956, 6, 6));
+        Reader reader2 = new Reader("tomasz", "tomecki", LocalDate.of(2000, 3, 3));
 
         //When
         readerRepository.save(reader);

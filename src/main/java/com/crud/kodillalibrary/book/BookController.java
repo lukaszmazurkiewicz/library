@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @Slf4j
 class BookController {
-
     private final BookMapper bookMapper;
     private final BookService bookService;
 

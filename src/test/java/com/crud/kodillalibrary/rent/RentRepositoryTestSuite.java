@@ -41,7 +41,7 @@ public class RentRepositoryTestSuite {
         //Given
         long sizeOfDatabaseBeforeTest = rentRepository.count();
 
-        Book book = new Book(1, "ja", "ty", LocalDate.of(2010, 12, 12));
+        Book book = new Book("ja", "ty", LocalDate.of(2010, 12, 12));
         bookRepository.save(book);
 
         Copy copy = new Copy(book, Status.AVAILABLE);
@@ -49,8 +49,8 @@ public class RentRepositoryTestSuite {
         copyRepository.save(copy);
         copyRepository.save(copy2);
 
-        Reader reader = new Reader(1L, "jan", "janowy", LocalDate.of(1956, 6, 6));
-        Reader reader2 = new Reader(2L, "tomasz", "tomecki", LocalDate.of(2000, 3, 3));
+        Reader reader = new Reader("jan", "janowy", LocalDate.of(1956, 6, 6));
+        Reader reader2 = new Reader("tomasz", "tomecki", LocalDate.of(2000, 3, 3));
         readerRepository.save(reader);
         readerRepository.save(reader2);
 
@@ -72,13 +72,13 @@ public class RentRepositoryTestSuite {
     @Test
     public void testFindById() {
         //Given
-        Book book = new Book(1, "ja", "ty", LocalDate.of(2010, 12, 12));
+        Book book = new Book("ja", "ty", LocalDate.of(2010, 12, 12));
         bookRepository.save(book);
 
         Copy copy = new Copy(book, Status.AVAILABLE);
         copyRepository.save(copy);
 
-        Reader reader = new Reader(1L, "jan", "janowy", LocalDate.of(1956, 6, 6));
+        Reader reader = new Reader("jan", "janowy", LocalDate.of(1956, 6, 6));
         readerRepository.save(reader);
 
         Rent rent = new Rent(LocalDate.of(2019, 4, 30), null, reader, copy);
@@ -102,7 +102,7 @@ public class RentRepositoryTestSuite {
         //Given
         long sizeOfDatabaseBeforeTest = rentRepository.count();
 
-        Book book = new Book(1, "ja", "ty", LocalDate.of(2010, 12, 12));
+        Book book = new Book("ja", "ty", LocalDate.of(2010, 12, 12));
         bookRepository.save(book);
 
         Copy copy = new Copy(book, Status.AVAILABLE);
@@ -110,8 +110,8 @@ public class RentRepositoryTestSuite {
         copyRepository.save(copy);
         copyRepository.save(copy2);
 
-        Reader reader = new Reader(1L, "jan", "janowy", LocalDate.of(1956, 6, 6));
-        Reader reader2 = new Reader(2L, "tomasz", "tomecki", LocalDate.of(2000, 3, 3));
+        Reader reader = new Reader( "jan", "janowy", LocalDate.of(1956, 6, 6));
+        Reader reader2 = new Reader( "tomasz", "tomecki", LocalDate.of(2000, 3, 3));
         readerRepository.save(reader);
         readerRepository.save(reader2);
 

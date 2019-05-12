@@ -1,40 +1,31 @@
 package com.crud.kodillalibrary.rent;
 
 import com.crud.kodillalibrary.copy.Status;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class RentService {
     private final RentRepository rentRepository;
 
-    @Autowired
-    public RentService(RentRepository rentRepository) {
-        this.rentRepository = rentRepository;
-    }
-
-    List<Rent> getRents() {
-        return rentRepository.findAll();
-    }
-
-    Rent getRentById(long rentId) {
-        return rentRepository.findById(rentId).orElseThrow(RentNotFountException::new);
-    }
-
+    @Transactional
     Rent addRent(Rent rent) {
-        return rentRepository.save(rent);
+        rent.getCopy().setStatus(Status.RENTED);
+
+        return rent;
     }
 
+    @Transactional
     Rent returnBook(long id) {
-        Rent rent = rentRepository.findById(id).orElseThrow(RentNotFountException::new);
+        Rent rent = rentRepository.findById(id).orElseThrow(() -> new RentNotFountException("Rent with id " + id + "not found"));
 
         rent.setReturnDate(LocalDate.now());
         rent.getCopy().setStatus(Status.AVAILABLE);
 
-        return rentRepository.save(rent);
-
+        return rent;
     }
 }

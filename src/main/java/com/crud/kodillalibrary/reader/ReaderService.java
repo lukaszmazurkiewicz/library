@@ -1,25 +1,15 @@
 package com.crud.kodillalibrary.reader;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
+@AllArgsConstructor
 public class ReaderService {
     private final ReaderRepository readerRepository;
 
-    @Autowired
-    public ReaderService(ReaderRepository readerRepository) {
-        this.readerRepository = readerRepository;
-    }
-
-    List<Reader> getReaders() {
-        return readerRepository.findAll();
-    }
-
     public Reader getReaderById(long id) {
-        return readerRepository.findById(id).orElseThrow(ReaderNotFindException::new);
+        return readerRepository.findById(id).orElseThrow(() -> new ReaderNotFindException("Reader with id " + id + "not found"));
     }
 
     Reader addReader(Reader reader) {

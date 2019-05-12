@@ -30,7 +30,7 @@ public class CopyRepositoryTestSuite {
         //Given
         long sizeOfDatabaseBeforeTest = copyRepository.count();
 
-        Book book = new Book(1, "ja", "ty", LocalDate.of(2010, 12, 12));
+        Book book = new Book("ja", "ty", LocalDate.of(2010, 12, 12));
 
         bookRepository.save(book);
 
@@ -53,7 +53,7 @@ public class CopyRepositoryTestSuite {
     @Test
     public void testFindById() {
         //Given
-        Book book = new Book(1, "ja", "ty", LocalDate.of(2010, 12, 12));
+        Book book = new Book("ja", "ty", LocalDate.of(2010, 12, 12));
 
         bookRepository.save(book);
 
@@ -79,7 +79,7 @@ public class CopyRepositoryTestSuite {
         //Given
         long sizeOfDatabaseBeforeTest = copyRepository.count();
 
-        Book book = new Book(1, "ja", "ty", LocalDate.of(2010, 12, 12));
+        Book book = new Book("ja", "ty", LocalDate.of(2010, 12, 12));
 
         bookRepository.save(book);
 
@@ -98,7 +98,7 @@ public class CopyRepositoryTestSuite {
     @Test
     public void testCountByBook_IdAndAndStatus() {
         //Given
-        Book book = new Book(1, "ja", "ty", LocalDate.of(2010, 12, 12));
+        Book book = new Book("ja", "ty", LocalDate.of(2010, 12, 12));
 
         bookRepository.save(book);
 

@@ -2,6 +2,7 @@ package com.crud.kodillalibrary.book;
 
 import com.crud.kodillalibrary.copy.Copy;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,6 +17,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 @Entity(name = "BOOKS")
 public class Book {
 
@@ -44,6 +46,12 @@ public class Book {
 
     public Book(long id, String title, String author, LocalDate publishDate) {
         this.id = id;
+        this.title = title;
+        this.author = author;
+        this.publishDate = publishDate;
+    }
+
+    public Book(String title, String author, LocalDate publishDate) {
         this.title = title;
         this.author = author;
         this.publishDate = publishDate;

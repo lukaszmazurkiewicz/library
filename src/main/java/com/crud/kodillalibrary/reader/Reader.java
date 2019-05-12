@@ -1,9 +1,7 @@
 package com.crud.kodillalibrary.reader;
 
 import com.crud.kodillalibrary.rent.Rent;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
@@ -18,10 +16,8 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
-@Getter
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
-@EqualsAndHashCode
 @Entity(name = "READERS")
 public class Reader {
     @Id
@@ -51,6 +47,12 @@ public class Reader {
 
     public Reader(long id, String firstName, String lastName, LocalDate createAccountDate) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.createAccountDate = createAccountDate;
+    }
+
+    public Reader(String firstName, String lastName, LocalDate createAccountDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.createAccountDate = createAccountDate;

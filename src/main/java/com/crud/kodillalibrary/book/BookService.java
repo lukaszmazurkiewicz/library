@@ -9,9 +9,7 @@ public class BookService {
     private final BookRepository bookRepository;
 
     public Book getBookById(long id) {
-        return bookRepository
-                .findById(id)
-                .orElseThrow(() -> new BookNotFoundException("Book with id " + id + " not found"));
+        return bookRepository.findById(id).orElseThrow(() -> new BookNotFoundException("Book with id " + id + " not found"));
     }
 
     Book addBook(Book book) {

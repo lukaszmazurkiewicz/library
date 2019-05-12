@@ -2,10 +2,7 @@ package com.crud.kodillalibrary.copy;
 
 import com.crud.kodillalibrary.book.Book;
 import com.crud.kodillalibrary.rent.Rent;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Data;
 import lombok.Setter;
 
 import javax.persistence.CascadeType;
@@ -20,14 +17,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
+@Data
 @Entity(name = "COPIES")
 public class Copy {
     @Id

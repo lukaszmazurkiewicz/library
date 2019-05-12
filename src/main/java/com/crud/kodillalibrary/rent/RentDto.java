@@ -1,14 +1,10 @@
 package com.crud.kodillalibrary.rent;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Value;
 
 import java.time.LocalDate;
 
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
+@Value
 class RentDto {
     private long id;
     private long readerId;

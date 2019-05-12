@@ -1,5 +1,7 @@
 package com.crud.kodillalibrary.reader;
 
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -7,19 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@AllArgsConstructor
+@Slf4j
 @RequestMapping("/library/readers")
 class ReaderController {
     private final ReaderMapper readerMapper;
     private final ReaderService readerService;
 
-    @Autowired
-    public ReaderController(ReaderMapper readerMapper, ReaderService readerService) {
-        this.readerMapper = readerMapper;
-        this.readerService = readerService;
-    }
-
     @PostMapping
     Long addReader(@RequestBody ReaderDto readerDto) {
+        log.info("Add reader called. ReaderDto [{}]", readerDto);
+
         Reader reader = readerService.addReader(readerMapper.mapToReader(readerDto));
         return reader.getId();
     }

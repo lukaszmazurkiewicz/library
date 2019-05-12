@@ -3,9 +3,7 @@ package com.crud.kodillalibrary.rent;
 import com.crud.kodillalibrary.copy.Copy;
 import com.crud.kodillalibrary.reader.Reader;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Data;
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -19,10 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-@Getter
+@Data
 @AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
 @Entity(name = "RENTS")
 public class Rent {
     @Id
@@ -45,7 +41,7 @@ public class Rent {
     @JoinColumn(name = "COPY_ID")
     private Copy copy;
 
-    public Rent(@NotNull LocalDate rentDate, LocalDate returnDate, Reader reader, Copy copy) {
+    public Rent(LocalDate rentDate, LocalDate returnDate, Reader reader, Copy copy) {
         this.rentDate = rentDate;
         this.returnDate = returnDate;
         this.reader = reader;

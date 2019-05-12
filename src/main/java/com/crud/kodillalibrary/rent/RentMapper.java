@@ -36,10 +36,4 @@ public class RentMapper {
                 rent.getRentDate(),
                 rent.getReturnDate());
     }
-
-    List<RentDto> mapToRentDtoList(final List<Rent> rents) {
-        return rents.stream()
-                .map(r -> mapToRentDto(r))
-                .collect(Collectors.toList());
-    }
 }
