@@ -4,6 +4,7 @@ import com.crud.kodillalibrary.copy.Copy;
 import com.crud.kodillalibrary.reader.Reader;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -18,6 +19,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "RENTS")
 public class Rent {

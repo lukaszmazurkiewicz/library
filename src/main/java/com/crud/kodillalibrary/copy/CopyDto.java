@@ -1,8 +1,12 @@
 package com.crud.kodillalibrary.copy;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 class CopyDto {
     private long id;
     private long bookId;

@@ -7,9 +7,6 @@ import com.crud.kodillalibrary.reader.ReaderService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @AllArgsConstructor
 @Service
 public class RentMapper {

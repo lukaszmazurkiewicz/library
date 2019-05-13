@@ -1,10 +1,10 @@
 package com.crud.kodillalibrary.reader;
 
-import lombok.Value;
+import lombok.Data;
 
 import java.time.LocalDate;
 
-@Value
+@Data
 class ReaderDto {
     private long id;
     private String firstName;
