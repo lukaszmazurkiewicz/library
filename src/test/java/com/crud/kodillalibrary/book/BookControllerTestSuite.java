@@ -1,4 +1,3 @@
-/*
 package com.crud.kodillalibrary.book;
 
 import com.google.gson.Gson;
@@ -38,7 +37,7 @@ public class BookControllerTestSuite {
         Book book = new Book(1L, "testTitle", "testAuthor", LocalDate.of(2010, 10, 10));
         BookDto bookDto = new BookDto(2L, "Title", "Author", LocalDate.of(2009, 10, 10));
 
-        when(bookService.addBook(bookMapper.mapToBook(ArgumentMatchers.any(BookDto.class)))).thenReturn(book);
+        when(bookService.addBook(bookMapper.mapToBook(bookDto))).thenReturn(book);
 
         Gson gson = new Gson();
         String jsonContent = gson.toJson(bookDto);
@@ -50,4 +49,4 @@ public class BookControllerTestSuite {
                 .content(jsonContent))
                 .andExpect(status().isOk());
     }
-}*/
+}

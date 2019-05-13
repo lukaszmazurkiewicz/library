@@ -2,6 +2,7 @@ package com.crud.kodillalibrary.copy;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @Slf4j
 @RequestMapping("/copies")
+@CrossOrigin(origins = "*")
 public class CopyController {
     private final CopyMapper copyMapper;
     private final CopyService copyService;

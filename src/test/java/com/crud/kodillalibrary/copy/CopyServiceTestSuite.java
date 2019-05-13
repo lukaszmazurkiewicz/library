@@ -13,6 +13,8 @@ import java.util.Optional;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -62,19 +64,24 @@ public class CopyServiceTestSuite {
     public void changeStatus() {
         //Given
         Book book = new Book("testTitle", "testAuthor", LocalDate.of(2011, 10, 9));
-        Copy copy = new Copy( book, Status.AVAILABLE);
+        Copy copy = new Copy(book, Status.AVAILABLE);
+        Copy copy2 = new Copy( book, Status.DESTROYED);
+        Copy copy3 = new Copy( book, Status.DESTROYED);
 
         when(copyRepository.save(any(Copy.class))).thenReturn(copy);
+        when(copyService.changeStatus(any(Status.class), anyLong())).thenReturn(copy3);
 
         //When
-        Copy testCopy = copyService.changeStatus(Status.DESTROYED, 1L);
+
+        Copy testCopy = copyService.addCopy(copy2);
+        copyService.changeStatus(Status.DESTROYED, 1L);
 
         //Then
         assertEquals(copy.getId(), testCopy.getId());
         assertEquals(copy.getBook(), testCopy.getBook());
-        assertEquals(copy.getStatus(), testCopy.getStatus());
+        assertEquals(Status.DESTROYED, testCopy.getStatus());
     }*/
 
-    @Test
-    public void
+    /*@Test
+    public void*/
 }
