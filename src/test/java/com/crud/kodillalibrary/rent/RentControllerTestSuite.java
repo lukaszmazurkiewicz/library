@@ -1,6 +1,9 @@
-package com.crud.kodillalibrary.copy;
+package com.crud.kodillalibrary.rent;
 
 import com.crud.kodillalibrary.book.Book;
+import com.crud.kodillalibrary.copy.Copy;
+import com.crud.kodillalibrary.copy.Status;
+import com.crud.kodillalibrary.reader.Reader;
 import com.google.gson.Gson;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,75 +18,65 @@ import java.time.LocalDate;
 
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(CopyController.class)
-public class CopyControllerTestSuite {
+@WebMvcTest(RentController.class)
+public class RentControllerTestSuite {
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private CopyMapper copyMapper;
+    private RentMapper rentMapper;
 
     @MockBean
-    private CopyService copyService;
+    private RentService rentService;
 
     @Test
-    public void testHowManyBooks() throws Exception {
-        //Given
-        Long bookId = 1L;
-        long books = 2L;
-
-        when(copyService.copiesAvailableToRent(bookId)).thenReturn(books);
-
-        //WHen & Then
-        mockMvc.perform(get("/copies/bookId/2").contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void testAddCopy() throws Exception {
+    public void testAddRent() throws Exception {
         //Given
         Book book = new Book("ja", "ty", LocalDate.of(2010, 12, 12));
         Copy copy = new Copy(book, Status.AVAILABLE);
-        CopyDto copyDto = new CopyDto(1, 1, Status.AVAILABLE);
+        Reader reader = new Reader("jan", "janowy", LocalDate.of(1956, 6, 6));
 
-        when(copyService.addCopy(copyMapper.mapToCopy(copyDto))).thenReturn(copy);
+        Rent rent = new Rent(LocalDate.of(2019, 4, 30), null, reader, copy);
+        RentDto rentDto = new RentDto(1,1,1);
+
+        when(rentService.addRent(rentMapper.mapToRent(rentDto))).thenReturn(rent);
 
         Gson gson = new Gson();
-        String jsonContent = gson.toJson(copyDto);
+        String jsonContent = gson.toJson(rentDto);
 
         //When & Then
-        mockMvc.perform(post("/copies")
+        mockMvc.perform(post("/rents")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonContent))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void testChangeStatus() throws Exception {
+    public void testReturnBook() throws Exception {
         //Given
-        CopyDto copyDto = new CopyDto(1, 1, Status.AVAILABLE);
+        Long rentId = 1L;
+        RentDto rentDto = new RentDto(1,1,1);
 
-        when(copyMapper.mapToCopyDto(copyService.changeStatus(Status.DESTROYED, 10L))).thenReturn(copyDto);
+        when(rentMapper.mapToRentDto(rentService.returnBook(rentId))).thenReturn(rentDto);
 
         Gson gson = new Gson();
-        String jsonContent = gson.toJson(copyDto);
+        String jsonContent = gson.toJson(rentDto);
 
         //When & Then
-        mockMvc.perform(patch("/copies/DESTROYED/1")
+        mockMvc.perform(patch("/rents/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(1)))
-                .andExpect(jsonPath("$.bookId", is(1)))
-                .andExpect(jsonPath("$.status", is("AVAILABLE")));
+                .andExpect(jsonPath("$.readerId", is(1)))
+                .andExpect(jsonPath("$.copyId", is(1)));
     }
 
 }

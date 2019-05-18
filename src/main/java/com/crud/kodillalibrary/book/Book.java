@@ -1,6 +1,7 @@
 package com.crud.kodillalibrary.book;
 
 import com.crud.kodillalibrary.copy.Copy;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -33,6 +34,7 @@ public class Book {
     @NotNull
     private String author;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "PUBLISH_DATE")
     private LocalDate publishDate;
 

@@ -3,7 +3,6 @@ package com.crud.kodillalibrary.rent;
 import com.crud.kodillalibrary.copy.Status;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 

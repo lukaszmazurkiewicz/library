@@ -1,4 +1,4 @@
-package com.crud.kodillalibrary.book;
+package com.crud.kodillalibrary.reader;
 
 import com.google.gson.Gson;
 import org.junit.Test;
@@ -17,30 +17,30 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(BookController.class)
-public class BookControllerTestSuite {
+@WebMvcTest(ReaderController.class)
+public class ReaderControllerTestSuite {
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private BookMapper bookMapper;
+    private ReaderMapper readerMapper;
 
     @MockBean
-    private BookService bookService;
+    private ReaderService readerService;
 
     @Test
-    public void addBook() throws Exception {
+    public void testAddReader() throws Exception {
         //Given
-        Book book = new Book(1L, "testTitle", "testAuthor", LocalDate.of(2010, 10, 10));
-        BookDto bookDto = new BookDto(2L, "Title", "Author");
+        Reader reader = new Reader("jan", "janowy", LocalDate.of(1956, 6, 6));
+        ReaderDto readerDto = new ReaderDto(1L, "jan", "janowy");
 
-        when(bookService.addBook(bookMapper.mapToBook(bookDto))).thenReturn(book);
+        when(readerService.addReader(readerMapper.mapToReader(readerDto))).thenReturn(reader);
 
         Gson gson = new Gson();
-        String jsonContent = gson.toJson(bookDto);
+        String jsonContent = gson.toJson(readerDto);
 
         //When & Then
-        mockMvc.perform(post("/books")
+        mockMvc.perform(post("/readers")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonContent))
                 .andExpect(status().isOk());

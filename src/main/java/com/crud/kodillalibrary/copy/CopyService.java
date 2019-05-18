@@ -17,13 +17,13 @@ public class CopyService {
         return copyRepository.save(copy);
     }
 
-    //@Transactional
+    @Transactional
     Copy changeStatus(Status status, long id) {
 
         Copy copy = getCopyById(id);
         copy.setStatus(status);
 
-        return copyRepository.save(copy);
+        return copy;
     }
 
     Long copiesAvailableToRent(long bookId) {
