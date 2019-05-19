@@ -2,13 +2,15 @@ package com.crud.kodillalibrary.copy;
 
 import com.crud.kodillalibrary.book.Book;
 import com.crud.kodillalibrary.rent.Rent;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,12 +18,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@Getter
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
 @Entity(name = "COPIES")
 public class Copy {
@@ -29,10 +29,11 @@ public class Copy {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToOne()
+    @Setter
+    @Enumerated(EnumType.STRING)
     @Column(name = "STATUS")
     @NotNull
-    private String status;
+    private Status status;
 
     @ManyToOne
     @JoinColumn(name = "BOOK_ID")
@@ -46,4 +47,14 @@ public class Copy {
     )
     private List<Rent> rents;
 
+    public Copy(long id, Book book, Status status) {
+        this.id = id;
+        this.book = book;
+        this.status = status;
+    }
+
+    public Copy(Book book, Status status) {
+        this.book = book;
+        this.status = status;
+    }
 }

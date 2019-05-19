@@ -1,8 +1,8 @@
 package com.crud.kodillalibrary.book;
 
 import com.crud.kodillalibrary.copy.Copy;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
@@ -17,11 +17,11 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
-@Getter
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
 @Entity(name = "BOOKS")
 public class Book {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -34,6 +34,7 @@ public class Book {
     @NotNull
     private String author;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "PUBLISH_DATE")
     private LocalDate publishDate;
 
@@ -44,4 +45,17 @@ public class Book {
             fetch = FetchType.LAZY
     )
     private List<Copy> copies;
+
+    public Book(long id, String title, String author, LocalDate publishDate) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.publishDate = publishDate;
+    }
+
+    public Book(String title, String author, LocalDate publishDate) {
+        this.title = title;
+        this.author = author;
+        this.publishDate = publishDate;
+    }
 }
